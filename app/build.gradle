@@ -1,0 +1,100 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://maven.google.com" }
+        google()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.at.demo"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencies {
+
+    //Kotlin support dependencies
+    implementation kotlinDependencies.core
+    implementation kotlinDependencies.coroutinesCore
+    implementation kotlinDependencies.coroutinesAndroid
+
+    // Kotlin Extension for Simplified coding
+    implementation androidxDependencies.ktx
+
+    //Android x design and backward compatibility support dependencies
+    implementation androidxDependencies.appCompat
+    implementation androidxDependencies.constraintlayout
+    implementation androidxDependencies.lifecycleExtention
+    implementation androidxDependencies.recyclerView
+
+    //Google dependencies
+    implementation googleDependencies.material
+    implementation googleDependencies.gson
+    implementation googleDependencies.materialDesign
+
+    // Network Library Retrofit dependencies
+    implementation networkDependencies.retrofit
+    implementation networkDependencies.retrofitGsonConveter
+    implementation networkDependencies.okHttpLogs
+
+    /* Koin DI */
+    implementation kotlinDI.core
+    implementation kotlinDI.scope
+    implementation kotlinDI.viewModel
+
+    // Testing Dependencies
+    androidTestImplementation androidxTestingDependencies.archCore
+    androidTestImplementation androidxTestingDependencies.core
+    androidTestImplementation androidxTestingDependencies.contrib
+    androidTestImplementation androidxTestingDependencies.intents
+    androidTestImplementation androidxTestingDependencies.uiAutoMator
+    testImplementation "junit:junit:$junitVersion"
+
+    // UI related dependencies
+    implementation uiDependencies.glide
+
+    implementation("androidx.paging:paging-runtime-ktx:3.0.0")
+
+
+}

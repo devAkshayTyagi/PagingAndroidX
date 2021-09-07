@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pagination Demo</string>
+    <string name="linear">Linear</string>
+    <string name="grid_2_by_2">grid 2 * 2</string>
+    <string name="grid_3_by_3">grid 3 * 3</string>
+    <string name="error">Error occured</string>
+</resources>
